@@ -122,7 +122,8 @@ default via 192.168.1.1 dev eno1 proto dhcp metric 100
 
 
 >3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров.
-### Ответ ###
+>4. Проверьте используемые UDP сокеты в Ubuntu, какие протоколы и приложения используют эти порты?
+### Ответ на вопросы 3 и 4###
 ```bash
 vk@vk-desktop:~$ ss -tpan
 State     Recv-Q    Send-Q        Local Address:Port         Peer Address:Port     Process
@@ -144,42 +145,6 @@ UNCONN    0         0                       [::]:111                  [::]:*    
 - `22` - TCP,UDP sshd, OpenSSH server
 - `53` - TCP,UDP - DNS, systemd-resolve 
 - `111` - TCP,UDP - RPC, rpcbind 
-
->4. Проверьте используемые UDP сокеты в Ubuntu, какие протоколы и приложения используют эти порты?
-### Ответ ###
-```bash
-vk@vk-desktop:~$ ss -upan
-State   Recv-Q  Send-Q                      Local Address:Port    Peer Address:Port  Process                            
-UNCONN  0       0                           192.168.1.106:48965        0.0.0.0:*      users:(("rygel",pid=12747,fd=17)) 
-ESTAB   0       0                      192.168.1.106%eno1:68       192.168.1.1:67                                       
-UNCONN  4352    0                                 0.0.0.0:68           0.0.0.0:*                                        
-UNCONN  0       0                                 0.0.0.0:500          0.0.0.0:*                                        
-UNCONN  0       0                                 0.0.0.0:631          0.0.0.0:*                                        
-UNCONN  0       0                         239.255.255.250:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=19)) 
-UNCONN  0       0                              172.17.0.1:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=18)) 
-UNCONN  0       0                         239.255.255.250:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=16)) 
-UNCONN  0       0                           192.168.1.106:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=15)) 
-UNCONN  0       0                         239.255.255.250:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=12)) 
-UNCONN  0       0                               127.0.0.1:1900         0.0.0.0:*      users:(("rygel",pid=12747,fd=11)) 
-UNCONN  0       0                                 0.0.0.0:59498        0.0.0.0:*                                        
-ESTAB   0       0                               127.0.0.1:52853      127.0.0.1:52853                                    
-UNCONN  0       0                                 0.0.0.0:4500         0.0.0.0:*                                        
-ESTAB   0       0                               127.0.0.1:37420      127.0.0.1:37420                                    
-UNCONN  0       0                              172.17.0.1:45962        0.0.0.0:*      users:(("rygel",pid=12747,fd=20)) 
-UNCONN  0       0                                 0.0.0.0:5353         0.0.0.0:*                                        
-UNCONN  0       0                               127.0.0.1:55093        0.0.0.0:*      users:(("rygel",pid=12747,fd=13)) 
-UNCONN  0       0                                       *:500                *:*                                        
-UNCONN  0       0                                    [::]:33804           [::]:*                                        
-UNCONN  0       0                                   [::1]:1900            [::]:*      users:(("rygel",pid=12747,fd=21)) 
-UNCONN  0       0                               [ff05::c]:1900            [::]:*      users:(("rygel",pid=12747,fd=22)) 
-UNCONN  0       0        [fe80::f7b0:95f2:c528:a9bb]%eno1:1900            [::]:*      users:(("rygel",pid=12747,fd=45)) 
-UNCONN  0       0                          [ff02::c]%eno1:1900            [::]:*      users:(("rygel",pid=12747,fd=46)) 
-UNCONN  0       0                                       *:4500               *:*                                        
-UNCONN  0       0        [fe80::f7b0:95f2:c528:a9bb]%eno1:37430           [::]:*      users:(("rygel",pid=12747,fd=47)) 
-UNCONN  0       0                                   [::1]:37605           [::]:*      users:(("rygel",pid=12747,fd=23)) 
-UNCONN  0       0                                    [::]:5353            [::]:*                                        
-```
-
 
 >5. Используя diagrams.net, создайте L3 диаграмму вашей домашней сети или любой другой сети, с которой вы работали.
 ### Ответ ###
