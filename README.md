@@ -78,6 +78,33 @@ Paths: (23 available, best #4, table default)
 >2. Создайте dummy0 интерфейс в Ubuntu. Добавьте несколько статических маршрутов. Проверьте таблицу маршрутизации.
 ### Ответ ###
 ```bash
+ vk@vk-desktop:~$ sudo ip link add dummy0 type dummy
+ vk@vk-desktop:~$ sudo ip addr add 10.0.29.0/24 dev dummy0
+ vk@vk-desktop:~$ sudo ip link set dummy0 up
+ vk@vk-desktop:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:22:4d:9a:2c:aa brd ff:ff:ff:ff:ff:ff
+    altname enp0s25
+    inet 192.168.1.106/24 brd 192.168.1.255 scope global dynamic noprefixroute eno1
+       valid_lft 6235sec preferred_lft 6235sec
+    inet6 fe80::f7b0:95f2:c528:a9bb/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:9d:0c:4e:31 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+4: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/ether 62:5f:40:07:4f:b4 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.29.0/24 scope global dummy0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::605f:40ff:fe07:4fb4/64 scope link 
+       valid_lft forever preferred_lft forever
 ```
 
 
