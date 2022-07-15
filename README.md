@@ -125,33 +125,25 @@ default via 192.168.1.1 dev eno1 proto dhcp metric 100
 ### Ответ ###
 ```bash
 vk@vk-desktop:~$ ss -tpan
-State    Recv-Q Send-Q                    Local Address:Port     Peer Address:Port Process                              
-LISTEN   0      4096                          127.0.0.1:9050          0.0.0.0:*                                         
-LISTEN   0      10                        192.168.1.106:36895         0.0.0.0:*     users:(("rygel",pid=12747,fd=25))   
-LISTEN   0      10                            127.0.0.1:46465         0.0.0.0:*     users:(("rygel",pid=12747,fd=14))   
-LISTEN   0      10                           172.17.0.1:34571         0.0.0.0:*     users:(("rygel",pid=12747,fd=26))   
-LISTEN   0      128                           127.0.0.1:631           0.0.0.0:*                                         
-LISTEN   0      244                           127.0.0.1:5432          0.0.0.0:*                                         
-LISTEN   0      244                           127.0.0.1:5433          0.0.0.0:*                                         
-ESTAB    0      0                         192.168.1.106:54604    140.82.121.5:443   users:(("firefox",pid=2999,fd=150)) 
-ESTAB    0      0                         192.168.1.106:53572    20.84.22.197:443   users:(("firefox",pid=2999,fd=205)) 
-ESTAB    0      0                         192.168.1.106:58984  34.120.208.123:443   users:(("firefox",pid=2999,fd=77))  
-ESTAB    0      0                         192.168.1.106:51434    140.82.121.4:443   users:(("firefox",pid=2999,fd=109)) 
-ESTAB    0      0                         192.168.1.106:59778   140.82.113.26:443   users:(("firefox",pid=2999,fd=206)) 
-SYN-SENT 0      1                      10.0.29.0%dummy0:58164   34.122.121.32:80                                        
-ESTAB    0      0                         192.168.1.106:41596 185.199.110.154:443   users:(("firefox",pid=2999,fd=113)) 
-ESTAB    0      0                         192.168.1.106:46688  188.114.98.160:443   users:(("firefox",pid=2999,fd=141)) 
-ESTAB    0      0                         192.168.1.106:52264  34.218.159.206:443   users:(("firefox",pid=2999,fd=187)) 
-ESTAB    0      0                         192.168.1.106:43516  104.16.249.249:443   users:(("firefox",pid=2999,fd=120)) 
-ESTAB    0      0                         192.168.1.106:51692   140.82.112.22:443   users:(("firefox",pid=2999,fd=127)) 
-ESTAB    0      0                         192.168.1.106:53932  192.241.241.96:443   users:(("firefox",pid=2999,fd=124)) 
-ESTAB    0      0                         192.168.1.106:43646 185.199.111.133:443   users:(("firefox",pid=2999,fd=112)) 
-LISTEN   0      511                                   *:80                  *:*                                         
-LISTEN   0      10     [fe80::f7b0:95f2:c528:a9bb]%eno1:39829            [::]:*     users:(("rygel",pid=12747,fd=48))   
-LISTEN   0      10                                [::1]:33397            [::]:*     users:(("rygel",pid=12747,fd=27))   
-LISTEN   0      128                               [::1]:631              [::]:*                                       
+State     Recv-Q    Send-Q        Local Address:Port         Peer Address:Port     Process
+LISTEN    0         4096          127.0.0.53%lo:53                0.0.0.0:*         users:(("systemd-resolve",pid=570,fd=13))
+LISTEN    0         128                 0.0.0.0:22                0.0.0.0:*         users:(("sshd",pid=857,fd=3))
+LISTEN    0         4096                0.0.0.0:111               0.0.0.0:*         users:(("rpcbind",pid=569,fd=4),("systemd",pid=1,fd=35))
+ESTAB     0         0                 10.0.2.15:22               10.0.2.2:58010     users:(("sshd",pid=1148,fd=4),("sshd",pid=1111,fd=4))
+LISTEN    0         128                    [::]:22                   [::]:*         users:(("sshd",pid=857,fd=4))
+LISTEN    0         4096                   [::]:111                  [::]:*         users:(("rpcbind",pid=569,fd=6),("systemd",pid=1,fd=37))               
 ```
-
+```bash
+vk@vk-desktop:~$ ss -upan
+State     Recv-Q    Send-Q         Local Address:Port         Peer Address:Port    Process
+UNCONN    0         0              127.0.0.53%lo:53                0.0.0.0:*        users:(("systemd-resolve",pid=570,fd=12))
+UNCONN    0         0             10.0.2.15%eth0:68                0.0.0.0:*        users:(("systemd-network",pid=402,fd=19))
+UNCONN    0         0                    0.0.0.0:111               0.0.0.0:*        users:(("rpcbind",pid=569,fd=5),("systemd",pid=1,fd=36))
+UNCONN    0         0                       [::]:111                  [::]:*        users:(("rpcbind",pid=569,fd=7),("systemd",pid=1,fd=38))
+```
+- `22` - TCP,UDP sshd, OpenSSH server
+- `53` - TCP,UDP - DNS, systemd-resolve 
+- `111` - TCP,UDP - RPC, rpcbind 
 
 >4. Проверьте используемые UDP сокеты в Ubuntu, какие протоколы и приложения используют эти порты?
 ### Ответ ###
