@@ -149,5 +149,5 @@ UNCONN    0         0                       [::]:111                  [::]:*    
 >5. Используя diagrams.net, создайте L3 диаграмму вашей домашней сети или любой другой сети, с которой вы работали.
 ### Ответ ###
 
-[Hme Network Map](https://github.com/VovetZ/devops-DZ3.8/map.jpg)
+[Home Network Map](https://github.com/VovetZ/devops-DZ3.8/blob/521088a95970252d077491e95fbbedae566269a7/map.jpg)
 
