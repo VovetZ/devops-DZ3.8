@@ -107,6 +107,19 @@ Paths: (23 available, best #4, table default)
        valid_lft forever preferred_lft forever
 ```
 
+``` bash
+vk@vk-desktop:~$ sudo ip route add 8.16.28.0/24 via 10.0.29.0       
+vk@vk-desktop:~$ sudo ip route add 8.8.8.0/24 via 10.0.29.0
+vk@vk-desktop:~$sudo ip route
+default via 192.168.1.1 dev eno1 proto dhcp metric 100 
+8.8.8.0/24 via 10.0.29.0 dev dummy0 
+8.16.28.0/24 via 10.0.29.0 dev dummy0 
+10.0.29.0/24 dev dummy0 proto kernel scope link src 10.0.29.0 
+169.254.0.0/16 dev eno1 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.1.0/24 dev eno1 proto kernel scope link src 192.168.1.106 metric 100 
+```
+
 
 >3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров.
 ### Ответ ###
